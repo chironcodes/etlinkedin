@@ -3,6 +3,7 @@
 
 import os
 import time
+from random import uniform
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -30,7 +31,8 @@ def load_all_actors():
             st_height = new_height
 
 
-
+def slow_down():
+    time.sleep(uniform(0.5, 2.3))
 
 
 
@@ -73,9 +75,9 @@ if __name__ == "__main__":
     load_all_actors()
 
     profile_urls = driver.find_elements(By.CLASS_NAME, "follows-recommendation-card__avatar-link")
+    profile_urls = [url.get_attribute('href').split("/in/")[1][:-1] for url in profile_urls if url.get_attribute('href').__contains__("/in/")]
 
     # filters common accounts only and feed them to the sqlite
-    profile_urls = [url.get_attribute('href') for url in profile_urls if url.get_attribute('href').__contains__("/in/")]
     for url in profile_urls:
         social_data.insertInto("actor", actor_url=url)
 
