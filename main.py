@@ -227,7 +227,7 @@ if __name__ == "__main__":
         all_sections = profile.find_all("section", class_="artdeco-card ember-view break-words pb3 mt4")
         
         # adds and returns id
-        inserted_id = social_data.insertInto('actor', actor00_url=actor_url)
+        inserted_id = social_data.insertInto('actor', actor_url=actor_url)
         
         for section in all_sections:
             section_name = section.div.get("id")
