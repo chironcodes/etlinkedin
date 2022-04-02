@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS course (actor_id integer,course_id integer PRIMARY KEY AUTOINCREMENT,course_name text)

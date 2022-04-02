@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS li_and_cert (actor_id integer,lice_id integer PRIMARY KEY AUTOINCREMENT,lice_name text,lice_company text,lice_when text)

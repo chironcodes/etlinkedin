@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS actor (actor_id integer PRIMARY KEY AUTOINCREMENT,actor_url text NOT NULL,actor_name text  NULL)

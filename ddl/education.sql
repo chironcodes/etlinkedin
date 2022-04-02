@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS education (actor_id integer,edu_id integer PRIMARY KEY AUTOINCREMENT,edu_company text,edu_title text,edu_beg text,edu_end text)

@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS experience (actor_id integer,exp_id integer PRIMARY KEY AUTOINCREMENT,exp_name text,exp_company text,exp_beg text,exp_end text)
