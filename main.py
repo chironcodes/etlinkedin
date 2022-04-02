@@ -6,6 +6,7 @@
 import os
 from re import I
 import time
+from datetime import date
 from random import uniform
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -15,6 +16,8 @@ from webdriver_manager.firefox import GeckoDriverManager
 
 from beau_selekdin.modules.connector import interface_db
 
+
+today = date.today()
 
 desired = ['experience',
            'education',
@@ -68,7 +71,10 @@ def treat_date(date_string: str):
         exp_beg = exp_beg.split(" ")[2]+mes[exp_beg.split(" ")[0]]
         exp_end = date_string.split("-")[1][:]
         if exp_end.__contains__("o momento"):
-            exp_end = "2022.04"
+            current_year = today.year
+            current_month = today.month
+            exp_end = current_year + "." + current_month
+            # exp_end = "2022.04"
         else:
             exp_end = exp_end[1:].split(" ")[2]+mes[exp_end[1:].split(" ")[0]]
         return exp_beg, exp_end
@@ -125,7 +131,10 @@ def scrap_me(table: str, actor_id: int, section):
                     exp_beg=exp_beg, exp_end=exp_end)  
                 
             elif table=='education':
+                edu_company = card.select("span.mr1, t-bold")[0].span.text if card.select("span.mr1, t-bold")[0].span.text != "" else edu_company = ""
+                
                 edu_company = card.select("span.mr1, t-bold")[0].span.text
+                
                 edu_title = card.select("span.t-14, t-normal")[0].span.text
                 exp_date = card.select("span.t-14, t-normal")[1].span.text
                 edu_beg, edu_end = treat_date(exp_date)
