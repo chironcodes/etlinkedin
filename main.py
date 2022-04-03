@@ -15,26 +15,26 @@ from selenium.webdriver.firefox.service import Service
 from webdriver_manager.firefox import GeckoDriverManager
 from bs4 import BeautifulSoup as bs
 
-from beau_selekdin.modules.connector import interface_db
-from beau_selekdin.modules.functions import *
+from modules.connector import InterfaceDB
+from modules.user import User
+from modules.functions import *
 
 
 if __name__ == "__main__":
     desired = ['experience', 'education', 'licenses_and_certifications', 'courses']
     root_url = "https://www.linkedin.com"
-    your_email = os.environ['your_email']
-    your_passwd = os.environ['your_passwd']
+    user = User(os.environ['your_email'], os.environ['your_passwd'])
     root_url = "https://www.linkedin.com"
     db = "social.db"
-    social_data = interface_db(db)
+    social_data = InterfaceDB(db)
     initialize_sqlite(social_data)
     driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()))
     driver.get(root_url+'/login')
     time.sleep(3)
     email = driver.find_element(By.ID, "username")
-    email.send_keys(your_email)
+    email.send_keys(user.email)
     passwd = driver.find_element(By.ID, "password")
-    passwd.send_keys(your_passwd)
+    passwd.send_keys(user.password)
     driver.find_element(By.XPATH, '//*[@type="submit"]').click()
     time.sleep(3)
     driver.get(root_url + '/feed/following')
