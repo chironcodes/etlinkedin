@@ -11,7 +11,7 @@ from webdriver_manager.firefox import GeckoDriverManager
 from bs4 import BeautifulSoup as bs
 
 
-def load_all_actors():
+def load_all_actors(driver):
     """Triggers all actors by scrolling down untill everything loads."""
     st_height = driver.execute_script("return document.body.scrollHeight")
     while True:
@@ -59,12 +59,12 @@ def treat_date(date_string: str):
             exp_end = exp_end[1:].split(" ")[2]+mes[exp_end[1:].split(" ")[0]]
     except Exception as e:
         print(str(e))
-        return " "
+        return " "," "
     else:
         return exp_beg, exp_end
 
 
-def scrap_me(table: str, actor_id: int, section):
+def scrap_me(social_data, table: str, actor_id: int, section):
     """About function comment."""
     count = 0
     cards = section.select("li.artdeco-list__item")
@@ -85,7 +85,7 @@ def scrap_me(table: str, actor_id: int, section):
                 ]
                 for exp_name, exp_date in zip(list_exp_name, list_exp_date):
                     exp_beg, exp_end = treat_date(exp_date)
-                    social_data.insertInto(table, actor_id=actor_id,
+                    social_data.insert_into(table, actor_id=actor_id,
                                            exp_name=exp_name, exp_company=exp_company,
                                            exp_beg=exp_beg, exp_end=exp_end)
             elif table == 'education':
@@ -113,7 +113,7 @@ def scrap_me(table: str, actor_id: int, section):
                     exp_date = " "
 
                 exp_beg, exp_end = treat_date(exp_date)
-                social_data.insertInto('experience', actor_id=actor_id,
+                social_data.insert_into('experience', actor_id=actor_id,
                                        exp_name=exp_name, exp_company=exp_company,
                                        exp_beg=exp_beg, exp_end=exp_end)
 
@@ -132,7 +132,7 @@ def scrap_me(table: str, actor_id: int, section):
                     exp_date = " "
 
                 edu_beg, edu_end = treat_date(exp_date)
-                social_data.insertInto('education', actor_id=actor_id,
+                social_data.insert_into('education', actor_id=actor_id,
                                        edu_company=edu_company, edu_title=edu_title,
                                        edu_beg=edu_beg, edu_end=edu_end)
 
@@ -158,7 +158,7 @@ def scrap_me(table: str, actor_id: int, section):
                     lice_when = lice_when.split(" ")[2]+mes[lice_when.split(" ")[0]]
                 else:
                     lice_when = ""
-                social_data.insertInto('li_and_cert', actor_id=actor_id,
+                social_data.insert_into('li_and_cert', actor_id=actor_id,
                                        lice_name=lice_name, lice_company=lice_company,
                                        lice_when=lice_when)
 
@@ -167,5 +167,5 @@ def scrap_me(table: str, actor_id: int, section):
                     course_name = card.select("span.mr1, t-bold")[0].span.text
                 except Exception as e:
                     course_name = " "
-                social_data.insertInto('course', actor_id=actor_id,
+                social_data.insert_into('course', actor_id=actor_id,
                                        course_name=course_name)

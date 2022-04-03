@@ -39,7 +39,7 @@ if __name__ == "__main__":
     time.sleep(3)
     driver.get(root_url + '/feed/following')
     time.sleep(3)
-    load_all_actors()
+    load_all_actors(driver)
     profile_urls = driver.find_elements(By.CLASS_NAME, "follows-recommendation-card__avatar-link")
     profile_urls = [url.get_attribute('href').split("/in/")[1][:-1] for url in profile_urls if url.get_attribute('href').__contains__("/in/")]
     for url in profile_urls:
@@ -50,9 +50,9 @@ if __name__ == "__main__":
         newHeight = driver.execute_script("return document.body.scrollHeight")
         profile = bs(driver.page_source.encode("utf-8"), "lxml")
         all_sections = profile.find_all("section", class_="artdeco-card ember-view break-words pb3 mt4")
-        inserted_id = social_data.insertInto('actor', actor_url=actor_url)
+        inserted_id = social_data.insert_into('actor', actor_url=actor_url)
         for section in all_sections:
             section_name = section.div.get("id")
             if(section_name in desired):
                 print(section_name)
-                scrap_me(section_name, inserted_id, section)
+                scrap_me(social_data, section_name, inserted_id, section)

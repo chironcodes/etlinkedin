@@ -77,7 +77,7 @@ class InterfaceDB():
                 if isinstance(kwvalue, int):
                     values += "{0}, ".format(kwvalue)
                 else:
-                    values += "'{0}', ".format(kwvalue)
+                    values += "'{0}', ".format(kwvalue.replace("'"," "))
 
             columns = columns[:-2]
             values = values[:-2]
@@ -85,7 +85,9 @@ class InterfaceDB():
             query = f"INSERT INTO {table} ({columns}) VALUES ({values})"
             print(query)
             cursor.execute(query)
+            inserted_id = cursor.lastrowid
             self.close_conn(conn, cursor)
+            return inserted_id
         except Exception as e:
             print(str(e))
 
