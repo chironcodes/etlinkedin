@@ -6,11 +6,11 @@ class User():
             self._password = password
         except Exception as e:
             print(str(e))
-            
+
     @property
     def email(self):
         return self._email
-    
+
     @email.setter
     def email(self, new_email):
         if new_email != '' and isinstance(new_email, str):
@@ -21,7 +21,7 @@ class User():
     @property
     def password(self):
         return self._password
-    
+
     @password.setter
     def password(self, new_password):
         if new_password != '' and isinstance(new_password, str):
