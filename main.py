@@ -64,3 +64,6 @@ if __name__ == "__main__":
             if(section_name in desired):
                 print(section_name)
                 scrap_me(social_data, section_name, inserted_id, section)
+
+
+    social_data.dump_bases(['actor','course','education','experience','li_and_cert'])

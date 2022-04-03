@@ -30,6 +30,7 @@
 
 import sqlite3
 from sqlite3 import Error
+import pandas as pd  
 
 
 class InterfaceDB():
@@ -103,5 +104,15 @@ class InterfaceDB():
             print(query)
             self.close_conn(conn, cursor)
             return cursor.fetchall()
+        except Exception as e:
+            print(str(e))
+
+    def dump_tables(self, tables:list):
+        try:
+            conn, cursor = self.get_conn()
+            for table in tables:
+                df = pd.read_sql_query(f"SELECT * FROM {table}",conn)
+                df.to_csv(f'{table}.csv', index=False)
+            self.close_conn(conn, cursor)
         except Exception as e:
             print(str(e))

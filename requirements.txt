@@ -8,6 +8,7 @@ cryptography==36.0.2
 h11==0.13.0
 idna==3.3
 outcome==1.1.0
+pandas==1.4.1
 parsel==1.6.0
 pep8==1.7.1
 pycodestyle==2.8.0
