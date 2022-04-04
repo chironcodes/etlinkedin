@@ -14,8 +14,8 @@
 
 ## :hammer: Extract:
 
-    After we enter our credentials, Selenium starts the whole extraction process. First, selenium access your contacts page and dynamically loads your whole list. 
-    After that, we scrap the whole page for profile's urls applying a List Comprehension rule to filter only those that are no commercial account(those with '/in/' on it). Later on we iterate through our list and its where our next takes place...
+> After we enter our credentials, Selenium starts the whole extraction process. First, selenium access your contacts page and dynamically loads your whole list. 
+> After that, we scrap the whole page for profile's urls applying a List Comprehension rule to filter only those that are no commercial account(those with '/in/' on it). Later on we iterate through our list and its where our next takes place...
 
 
 
@@ -24,7 +24,7 @@
 
 ##  :mag:Transform:
 
-    For each profile visit we scrap only for the infos we want: experience, education, licenses and certifications and courses; all those who can tell us a bit about someone's hard skills and knowledge.
+> For each profile visit we scrap only for the infos we want: experience, education, licenses and certifications and courses; all those who can tell us a bit about someone's hard skills and knowledge.
 
 
 
@@ -33,7 +33,7 @@
 
 ## :floppy_disk:  Load:
 
-    Both previous processes of our pipeline happens sequentially and so does our load. For each page we scrap we load, the info in our SQL db(sqlite). We assign a unique id for each account, only so we can make relations between tables taking care to *NOT STORE ANY PERSONAL DATA* eg:name,e-mail etc.
+> Both previous processes of our pipeline happens sequentially and so does our load. For each page we scrap we load, the info in our SQL db(sqlite). We assign a unique id for each account, only so we can make relations between tables taking care to *NOT STORE ANY PERSONAL DATA* eg:name,e-mail etc.
 
 
 
