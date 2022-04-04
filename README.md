@@ -1,33 +1,58 @@
-# beau_selekdin
+# ETLinkedin
 
 
-> In this very ambitious project our hero (me) will try to scrap a social network with some quests in mind:
+> Follow your dream, work hard, practice and persevere .
+
+
+
+<img src="./.src/capa.jpeg" alt="classic ETL template">
 
 
 
 
-## <img src="./.src/envelope.png" alt="An envelope with our hero's quest" width="40" height="40"> Main quest: 
 
-    1.  Learn and master the art of scrapping/crawling   🦉
+
+## :hammer: Extract:
+
+    After we enter our credentials, Selenium starts the whole extraction process. First, selenium access your contacts page and dynamically loads your whole list. 
+    After that, we scrap the whole page for profile's urls applying a List Comprehension rule to filter only those that are no commercial account(those with '/in/' on it). Later on we iterate through our list and its where our next takes place...
     
 
 
 
 
-## <img src="./.src/scroll.png" alt="An envelope with our hero's quest" width="30" height="30"> Side quests: 
 
-    1. PMake it possible to export data (sqlite3/.csv) 📜
-    2. A live presentation! Streamlit? 🎭
-    3. Produce a simple YET powerful insight that our Jrs can feast on! 🪅
-    4. Make it performatic 💨
-    5. Plant a tree! 🌲
+##  :mag:Transform:
 
-
-## <img src="./.src/tools.png" alt="An envelope with our hero's quest" width="30" height="30"> <img src="./.src/bow.png" alt="An envelope with our hero's quest" width="35" height="35"> Weaponry 
-
-    - We're mainly sticking with Selenium/BeautifulSoup4 has to offer us, but we DO welcome new things in here. 🧝
+    For each profile visit we scrap only for the infos we want: experience, education, licenses and certifications and courses; all those who can tell us a bit about someone's hard skills and knowledge.
+    
 
 
 
 
-Will our hero survive this quest and deliver our beloved MVP in due time? *`We'll see`*
+
+## :floppy_disk:  Load:
+
+    Both previous processes of our pipeline happens sequentially and so does our load. For each page we scrap we load, the info in our SQL db(sqlite). We assign a unique id for each account, only so we can make relations between tables taking care to *NOT STORE ANY PERSONAL DATA* eg:name,e-mail etc.
+    
+
+
+
+
+
+<img src="./.src/dashboard.jpeg" alt="classic ETL template">
+
+> After we finish our ETL pipeline, all the data is exported to a `.csv` format so you can build your own dashboard using any known BI tool like Google Data Studio, Qlik, Power Bi, Tableau
+
+
+
+
+
+
+
+Authors:
+
+:bust_in_silhouette: Diego Alves inboxdgo@gmail.com
+
+:bust_in_silhouette: Adilton Costa Anna adiltoncss@gmail.com
+

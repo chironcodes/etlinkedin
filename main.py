@@ -1,3 +1,6 @@
+# _author_ = ["Diego Alves", "Adilton Costa Anna"]
+# _license_ = "Beerware"
+# _version_ = "0.0.1"
 """
 
 """
@@ -25,7 +28,7 @@ from modules.functions import *
 if __name__ == "__main__":
     desired = ['experience', 'education', 'licenses_and_certifications', 'courses']
     root_url = "https://www.linkedin.com"
-    user = User(os.environ['your_email'], os.environ['your_passwd'])
+    user = User(input("Digite seu e-mail: "), input("Digite sua senha: "))
     root_url = "https://www.linkedin.com"
     db = "social.db"
     social_data = InterfaceDB(db)

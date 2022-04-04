@@ -1,3 +1,6 @@
+# _author_ = ["Diego Alves", "Adilton Costa Anna"]
+# _license_ = "Beerware"
+# _version_ = "0.0.1"
 from tabulate import tabulate
 
 table = [["Quimico","Azure"],["Biologo","AWS"]]
