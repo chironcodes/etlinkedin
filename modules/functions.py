@@ -12,7 +12,11 @@ from bs4 import BeautifulSoup as bs
 
 
 def load_all_actors(driver):
-    """Triggers all actors by scrolling down untill everything loads."""
+    """Nononon
+
+    Keyword arguments:
+    driver -- description
+    """
     st_height = driver.execute_script("return document.body.scrollHeight")
     while True:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -25,11 +29,20 @@ def load_all_actors(driver):
 
 
 def slow_down(increment_by: int = 0):
-    """Cooldown for 0.5 to 2.3 by default."""
+    """Nononon
+
+    Keyword arguments:
+    increment_by -- description (default 0)
+    """
     time.sleep(uniform((increment_by+0.5), (increment_by+2.3)))
 
 
 def initialize_sqlite(social_data):
+    """Nononon
+
+    Keyword arguments:
+    social_data -- description
+    """
     files = [file for file in os.listdir("./ddl") if file.__contains__('sql')]
     for file in files:
         with open(f'./ddl/{file}') as sql:
@@ -40,7 +53,11 @@ def initialize_sqlite(social_data):
 
 
 def treat_date(date_string: str):
-    """About function comment."""
+    """Nononon
+
+    Keyword arguments:
+    date_string -- description
+    """
     today = date.today()
     print(date_string)
     mes = {'jan': '.01', 'fev': '.02', 'mar': '.03',
@@ -65,7 +82,14 @@ def treat_date(date_string: str):
 
 
 def scrap_me(social_data, table: str, actor_id: int, section):
-    """About function comment."""
+    """Nononon
+
+    Keyword arguments:
+    social_data -- description
+    table -- description
+    actor_id -- description
+    section -- description
+    """
     count = 0
     cards = section.select("li.artdeco-list__item")
     for card in cards:
